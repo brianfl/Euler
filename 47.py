@@ -1,29 +1,31 @@
-list1 = []
-list_primes = set()
-list_primes.add(2)
-start = 10000*7
-stop = start+10000
+list_primes = [2]
 
-for num in range(2, stop):
+for i in range(3, 1000):
     counter = 0
-    for num2 in range(2, int(num**.5)+1):
-        if num % num2 == 0:
-            counter += 1
-    if counter == 0:
-        list_primes.add(num)
-
-for i in range(start, stop):
-    p_count = 0
-    for j in range(2, i):
+    for j in list_primes:
+        if j > int(i**.5) + 1:
+            break
         if i % j == 0:
-            if j in list_primes:
-                p_count += 1
+            counter += 1
+            break
+    if counter == 0:
+        list_primes.append(i)
+
+comps = {}
+
+for i in range(210, 200000):
+    p_count = 0
+    for j in list_primes:
+        if i % j == 0:
+            p_count += 1
     if p_count == 4:
-        list1.append(i)
-print(list1)
-for i in list1:
-    if i-1 in list1 and i-2 in list1 and i-3 in list1:
-        print(i-3)
+        comps[i] = True
 
-# Incomplete. Slow. Getting there. 
+for key in comps:
+    try:
+        if comps[key-1] and comps[key-2] and comps[key-3]:
+            target = key-3
+    except:
+        pass
 
+print(target) # 134043
