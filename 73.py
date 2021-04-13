@@ -25,26 +25,22 @@ def distinct_pf(n):
         p_list.append(val)
     return set(p_list)
 
-def phi(n):
-    l1 = distinct_pf(n)
-    prod = 1
-    for h in l1:
-        prod *= (1-1/h)
-    return round(prod*n)
+def rel_prime(n):
+    low = 1/3
+    high = 1/2
+    l1 = []
+    s1 = distinct_pf(n)
+    for i in range(int(low*n)+1, int(high*n)+1):
+        if len(distinct_pf(i).intersection(s1))==0:
+            l1.append(i)
+    return l1
 
-sum1 = 0
-bound = 1000000
+sum1 = -1
+bound = 12000
 
 for i in range(2, bound+1):
-    sum1 += phi(i)
+    sum1 += len(rel_prime(i))
 
-print(sum1) # 303963552391
+print(sum1) # 7295372
 
-"""
-The number of total reduced proper fractions for any number
-is the sum of all phi(n) from 2 to that number.
-"""
  
-
-        
-            
