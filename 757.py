@@ -13,7 +13,7 @@ for i in range(1, 4000):
             incr += 1
             s1.add(sum)
 
-print(len(s1))
+print(len(s1)) # 75737353
 
 """
 
